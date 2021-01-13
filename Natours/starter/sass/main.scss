@@ -1,10 +1,18 @@
-@charset "UTF-8";
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-dark: #777;
+$color-white: #fff;
+
+
 /* El selector universal permite establecer propiedades y valores comunes a todos los elementos, útil para resetear  */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento */ }
+  /* con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento */ 
+}
 
 /* Temas de fuentes, mejor en el body */
 body {
@@ -12,37 +20,47 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
-  color: #777;
-  padding: 30px; }
+  color: $color-grey-dark;
+  padding: 30px;
+}
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-image: linear-gradient(
+    to right, 
+    rgba($color-primary-light, 0.8), 
+    rgba($color-primary-dark, 0.8)),
+  url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
 
 .header__logo-box {
   position: absolute;
   top: 40px;
-  left: 40px; }
+  left: 40px;
+}
 
 .header__logo {
-  height: 35px; }
+  height: 35px;
+}
 
 .header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center; }
+  text-align: center;
+}
 
 .heading-primary {
-  color: #fff;
+  color: $color-white;;
   text-transform: uppercase;
   margin-bottom: 60px;
-  backface-visibility: hidden;
-  /* Controla rebotes raros que se dan a veces en las animaciones. También se usa cuando se rotan elementos o se hacen transformaciones similares. */ }
+  backface-visibility: hidden; 
+  /* Controla rebotes raros que se dan a veces en las animaciones. También se usa cuando se rotan elementos o se hacen transformaciones similares. */
+}
 
 .heading-primary--main {
   display: block;
@@ -56,7 +74,8 @@ body {
   animation-delay: 3s; // tiempo hasta que empieza
   animation-iteraction-count: 3 // veces que se repite
   animation-timing-function: ease-in; // controla la animación de la función
-  */ }
+  */  
+}
 
 .heading-primary--sub {
   display: block;
@@ -65,42 +84,54 @@ body {
   letter-spacing: 17.4px;
   animation-name: moveInRight;
   animation-duration: 1s;
-  animation-timing-function: ease-in; }
+  animation-timing-function: ease-in;
+}
 
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px); }
+    transform: translateX(-100px);
+  }
   80% {
-    transform: translateX(10px); }
+    transform: translateX(10px);
+  }
   100% {
     opacity: 1;
-    transform: translateX(0); } }
+    transform: translateX(0);
+  }
+}
 
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px); }
+    transform: translateX(100px);
+  }
   80% {
-    transform: translateX(-10px); }
+    transform: translateX(-10px);
+  }
   100% {
     opacity: 1;
-    transform: translateX(0); } }
+    transform: translateX(0);
+  }
+}
 
-@keyframes moveInBottom {
+@keyframes moveInBottom  {
   0% {
     opacity: 0;
-    transform: translateY(30px); }
+    transform: translateY(30px);
+  }
   100% {
     opacity: 1;
-    transform: translateX(0); } }
+    transform: translateX(0);
+  }
+}
 
 /* Pseudoclases:
   btn:link // si es un enlace
   btn:visited // si el usuario ya visitó el enlace
   btn:hover // Al pasar por encima
  */
-.btn:link,
+.btn:link, 
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
@@ -108,19 +139,23 @@ body {
   display: inline-block;
   border-radius: 100px;
   position: relative;
-  /* transition: all .2s; */ }
+  /* transition: all .2s; */
+}
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
 
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
 
 .btn--white {
-  background-color: #fff;
-  color: #777; }
+  background-color: $color-white;;
+  color: $color-grey-dark;
+}
 
 /* Pseudoelementos
    Son tratados como hijos
@@ -135,16 +170,21 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  transition: all .4s; }
+  transition: all .4s;
+}
 
 .btn--white::after {
-  background-color: #fff; }
+  background-color: $color-white;
+}
 
 .btn:hover::after {
   transform: scaleX(1.5) scaleY(1.6);
-  opacity: 0; }
+  opacity: 0;
+}
 
 .btn--animated {
   animation: moveInBottom .5s ease-out .75s;
   animation-fill-mode: backwards;
-  /* Sirve para recuperar los estilos anteriores cuando la animación termina */ }
+  /* Sirve para recuperar los estilos anteriores cuando la animación termina */
+}
+
