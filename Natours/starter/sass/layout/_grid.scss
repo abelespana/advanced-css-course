@@ -1,0 +1,45 @@
+.row {
+  max-width: $grid-width; // El valor es 114rem. Especifica el ancho máximo que puede ocupar. Si es mayor que 114rem (1140px) ocupa eso máximo, si no ocupa todo el espacio disponible.
+  background-color: #eee;
+  margin: 0 auto; // Truco para centrar elementos bloque dentro de otro elemento bloque. El "auto" significa que pone lo mismo a ambos lados.
+  // Equivalente a .row:not() {}
+  // El :not es opuesto a .row:last-child, niega y selecciona lo contrario
+  // En la práctica, está seleccionando todos menos el último
+  // Otra opción es .row:last.child { margin-bottom: 0}
+  &:not(:last-child) {
+    margin-bottom: $grid-gutter-vertical;
+  }
+  @include clearfix;
+  
+  // Propiedades comunes a todas las columnas
+  // Seleccionando todas las columnas con un atributo que hace referencia a todos los elementos que empiezan "class^" con "col-". Hay muchas posibilidades en este sentido
+  [class^="col-"] {
+    float: left;
+    background-color: orangered;
+    &:not(:last-child) {
+      margin-right: $grid-gutter-horizontal;
+    }
+    
+  }
+  
+  // Columnas
+  .col-1-of-2 {
+    // La sintaxis #{$variable} es necesaria en Sass para hacer operaciones
+    width: calc((100% - #{$grid-gutter-horizontal}) / 2);
+  }
+  .col-1-of-3 {
+    width: calc((100% - 2 * #{$grid-gutter-horizontal}) / 3);
+  }
+  .col-2-of-3 {
+    width: calc((2 * (100% - 2 * #{$grid-gutter-horizontal}) / 3) + #{$grid-gutter-horizontal});
+  }
+  .col-1-of-4 {
+    width: calc((100% - 3 * #{$grid-gutter-horizontal}) / 4);
+  }
+  .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + #{$grid-gutter-horizontal});
+  }
+  .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + (2 * #{$grid-gutter-horizontal}));
+  }
+}
