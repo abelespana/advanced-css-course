@@ -1,0 +1,15 @@
+/* El selector universal permite establecer propiedades y valores comunes a todos los elementos, útil para resetear  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento */ 
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

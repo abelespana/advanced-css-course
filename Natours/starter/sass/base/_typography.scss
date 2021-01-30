@@ -1,0 +1,41 @@
+/* Temas de fuentes, mejor en el body */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+}
+
+.heading-primary {
+  color: $color-white;;
+  text-transform: uppercase;
+  margin-bottom: 6rem;
+  backface-visibility: hidden; 
+  /* Controla rebotes raros que se dan a veces en las animaciones. También se usa cuando se rotan elementos o se hacen transformaciones similares. */
+  
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    /* Otras propiedades de animación
+    animation-delay: 3s; // tiempo hasta que empieza
+    animation-iteraction-count: 3 // veces que se repite
+    animation-timing-function: ease-in; // controla la animación de la función
+    */  
+  }
+  
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+  }
+}
