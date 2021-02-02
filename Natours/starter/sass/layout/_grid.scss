@@ -1,6 +1,5 @@
 .row {
   max-width: $grid-width; // El valor es 114rem. Especifica el ancho máximo que puede ocupar. Si es mayor que 114rem (1140px) ocupa eso máximo, si no ocupa todo el espacio disponible.
-  background-color: #eee;
   margin: 0 auto; // Truco para centrar elementos bloque dentro de otro elemento bloque. El "auto" significa que pone lo mismo a ambos lados.
   // Equivalente a .row:not() {}
   // El :not es opuesto a .row:last-child, niega y selecciona lo contrario
@@ -15,7 +14,6 @@
   // Seleccionando todas las columnas con un atributo que hace referencia a todos los elementos que empiezan "class^" con "col-". Hay muchas posibilidades en este sentido
   [class^="col-"] {
     float: left;
-    background-color: orangered;
     &:not(:last-child) {
       margin-right: $grid-gutter-horizontal;
     }
