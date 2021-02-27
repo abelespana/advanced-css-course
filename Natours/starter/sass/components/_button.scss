@@ -37,6 +37,14 @@ btn:hover // Al pasar por encima
       background-color: $color-white;  
     } 
   }
+  
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+    &::after {
+      background-color: $color-primary-dark;  
+    } 
+  }
 
   /* Pseudoelementos: Son tratados como hijos */
   &::after {
