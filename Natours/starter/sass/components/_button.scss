@@ -5,6 +5,7 @@ btn:hover // Al pasar por encima
 */
 
 .btn {
+  &,
   &:link, 
   &:visited {
     text-transform: uppercase;
@@ -23,10 +24,16 @@ btn:hover // Al pasar por encima
         opacity: 0;
       }
     }
+    
+    // Quitar estilos predefinidos para el elemento <button>
+    border: none;
+    cursor: pointer;
   
-  &:active {
+  &:active,
+  &:focus {
     transform: translateY(-1px);
-    box-shadow: 0 .5rem 1rem rgba($color-black, 0.2); 
+    box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+    outline: none;
   }
   }
   
