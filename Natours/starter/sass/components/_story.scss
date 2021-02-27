@@ -1,0 +1,67 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+  
+  // Selecciona todo (*) lo que esté dentro
+  // & > * {
+  //   transform: skewX(12deg);
+  // }
+  
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    position: relative;
+    // Para hacerle el contorneo. Solo funciona si está flotado y si tiene dimensiones explícitas
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    // Dibujar un círculo dentro
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    // Se pueden combinar dos propiedades en un mismo transform. De hecho, si no se hace así solo se aplica una de ellas (la que tenga más prioridad)
+    transform: translateX(-3rem) skewX(12deg);
+  }
+  
+  &__image {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    transition: all .5s;
+  }
+  
+  &__text {
+    transform: skewX(12deg);
+  }
+  
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+  
+  &:hover &__image {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+  
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  
+  
+}
