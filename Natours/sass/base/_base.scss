@@ -1,13 +1,43 @@
-/* El selector universal permite establecer propiedades y valores comunes a todos los elementos, útil para resetear  */
+// El selector universal permite establecer propiedades y valores comunes a todos los elementos, útil para resetear 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento */ 
+  // con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento 
 }
 
 html {
-  font-size: 62.5%;
+  // Define el tamaño de 1rem en todo el documento
+  font-size: 62.5%; // 1rem = 10px. Resultado de 10px (valor deseado) / 16px (valor del navegador) = 62.5%
+  
+  // Y lo vamos cambiando según las media queries que hicimos en el fichero de mixins
+  /*
+  @include responsive(phone) {
+    font-size: 50%; // 1rem = 8px, resultado de 8/16 = 50;
+  }
+  Se da el caso de que no necesitamos esta primera media query para teléfonos, porque nuestra segunda media query para tablet comprueba que el max-width sea de 900px, y esto es cierto en teléfonos también, además de en tablet, así que nos la podemos ahorrar :)
+  */
+  
+
+  
+  @include responsive(tab-land) { // width < 1200?
+    font-size: 56.25%; // 1rem = 9px, resultado de 9/16 = 56,25
+  }
+
+  @include responsive(tab-port) { // width < 900?
+    font-size: 50%; // 1rem = 8px, resultado de 8/16 = 50
+  }
+  
+  @include responsive(phone) { // width < 600?
+    // font-size: 30%;
+  }
+  
+  /* IMPORTANTE: Las media queries por si mismas no dan orden de preferencia. Así que siguiendo el principio de cascada de CSS, si ambas condiciones son ciertas (pantalla menor que 900 y pantalla menor que 600 por ejemplo), prevalecerá la última. Por eso el orden de nuestras media queries son primero si es menor que 900 y luego que 600, de lo contrario nos aplicaría los estilos de 900 a lo que fuera menor de 600 también
+  */
+  
+  @include responsive(big-desktop) {
+    font-size: 75% // 1rem = 12px, resultado de 12/16 = 75
+  }
 }
 
 body {

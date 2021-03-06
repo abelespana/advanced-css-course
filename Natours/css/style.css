@@ -1,13 +1,64 @@
 @charset "UTF-8";
-/* El selector universal permite establecer propiedades y valores comunes a todos los elementos, útil para resetear  */
+/*
+0 - 600px:  Móvil
+600-900px:  Tablet vertical
+900-1200px: Tablet apasaido
+1200-1800px: Estilos normales
+1800px en adelante: Escritorio grande
+*/
+/*
+Al importarlo dentro sería así:
+html {
+  font-size: 62.5%;
+  @include responsive-phone {
+    font-size: 50%;
+  }
+Explicación: Al importar nuestro mixin "responsive-phone" que tiene la directiva @content, lo que le incluyamos dentro allá donde lo usemos es lo que aplicará. 
+*/
+/*
+Nombres de las variables que usaremos como argumento del mixin "responsive"
+- phone
+- tab-port
+- tab-land
+- big-desktop
+** Teniendo en cuenta que en este proyecto los estilos para escritorios normales ya han sido definidos y no los vamos a modificar ahora. 
+*/
+/*
+Así lo usaríamos
+html {
+  font-size: 62.5%;
+  @include responsive(phone) {
+    font-size: 50%;
+  }
+}
+Explicación: el mixin responsive comprobará el argumento que se le pasa y si es "phone" como le espeficamos en la condición de su @if, aplicará la condición de la media query (max-width: 600px) y el @content que le especificamos (font-size: 50%)
+
+Otra cosa importante es el uso de EM y REM como unidades. Cuando se usan en media queries, estas unidades NO SE VEN AFECTADAS por los cambios que hagamos en nuestro código, como los de manipular el HTML. Pero SÍ SE VEN AFECTADAS por los cambios que haga el usuario (si sube la fuente de su navegador de 16px a 24px por ejemplo)
+*/
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  /* con box-sizing: border-box margen y padding no cuentan para el ancho y alto total de un elemento */ }
+  box-sizing: border-box; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  /*
+  @include responsive(phone) {
+    font-size: 50%; // 1rem = 8px, resultado de 8/16 = 50;
+  }
+  Se da el caso de que no necesitamos esta primera media query para teléfonos, porque nuestra segunda media query para tablet comprueba que el max-width sea de 900px, y esto es cierto en teléfonos también, además de en tablet, así que nos la podemos ahorrar :)
+  */
+  /* IMPORTANTE: Las media queries por si mismas no dan orden de preferencia. Así que siguiendo el principio de cascada de CSS, si ambas condiciones son ciertas (pantalla menor que 900 y pantalla menor que 600 por ejemplo), prevalecerá la última. Por eso el orden de nuestras media queries son primero si es menor que 900 y luego que 600, de lo contrario nos aplicaría los estilos de 900 a lo que fuera menor de 600 también
+  */ }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
   box-sizing: border-box; }

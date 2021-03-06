@@ -12,3 +12,72 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+// Media query manager 
+/*
+0 - 600px:  Móvil
+600-900px:  Tablet vertical
+900-1200px: Tablet apasaido
+1200-1800px: Estilos normales
+1800px en adelante: Escritorio grande
+*/
+
+// FORMA UNO: Crear un mixin y pasarle un argumento "content"
+@mixin responsive-phone {
+  @media (max-width: 600px) {
+    @content // Con la propiedad content le especificamos que lo que le pasemos dentro serán los estilos que aplique; 
+  }
+}
+/*
+Al importarlo dentro sería así:
+html {
+  font-size: 62.5%;
+  @include responsive-phone {
+    font-size: 50%;
+  }
+Explicación: Al importar nuestro mixin "responsive-phone" que tiene la directiva @content, lo que le incluyamos dentro allá donde lo usemos es lo que aplicará. 
+*/
+
+// Luego crearíamos mixins para el resto de resoluciones...
+@mixin responsive-tablet-portrait {}
+@mixin responsive-tablet-landscape {}
+@mixin responsive-desktop-big {}
+
+// FORMA DOS: O bien podemos crear un único mixin que englobe todos y acepte un parámetro como forma de operar.
+/*
+Nombres de las variables que usaremos como argumento del mixin "responsive"
+- phone
+- tab-port
+- tab-land
+- big-desktop
+** Teniendo en cuenta que en este proyecto los estilos para escritorios normales ya han sido definidos y no los vamos a modificar ahora. 
+*/
+
+@mixin responsive($breakpoint) {
+  // La directiva @if funciona como un if en cualquier lenguaje de programación
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) { @content } // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) { @content } // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) { @content } // 1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) { @content } // 1800px
+    // Nótese que en este caso usamos el "min-width" porque queremos que sea de un tamaño concreto en adelante y no hasta un tamaño concreto
+  }
+}
+/*
+Así lo usaríamos
+html {
+  font-size: 62.5%;
+  @include responsive(phone) {
+    font-size: 50%;
+  }
+}
+Explicación: el mixin responsive comprobará el argumento que se le pasa y si es "phone" como le espeficamos en la condición de su @if, aplicará la condición de la media query (max-width: 600px) y el @content que le especificamos (font-size: 50%)
+
+Otra cosa importante es el uso de EM y REM como unidades. Cuando se usan en media queries, estas unidades NO SE VEN AFECTADAS por los cambios que hagamos en nuestro código, como los de manipular el HTML. Pero SÍ SE VEN AFECTADAS por los cambios que haga el usuario (si sube la fuente de su navegador de 16px a 24px por ejemplo)
+*/
