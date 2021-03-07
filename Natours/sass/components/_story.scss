@@ -8,11 +8,23 @@
   padding-left: 9rem;
   font-size: $default-font-size;
   transform: skewX(-12deg);
+  /*
+  Selecciona todo (*) lo que esté dentro
+  & > * {
+    transform: skewX(12deg);
+  }
+  */
   
-  // Selecciona todo (*) lo que esté dentro
-  // & > * {
-  //   transform: skewX(12deg);
-  // }
+  @include responsive(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+  
+  @include responsive(phone) {
+    transform: skewX(0);
+  }
+  
   
   &__shape {
     width: 15rem;
@@ -27,6 +39,10 @@
     -webkit-clip-path: circle(50% at 50% 50%);
     // Se pueden combinar dos propiedades en un mismo transform. De hecho, si no se hace así solo se aplica una de ellas (la que tenga más prioridad)
     transform: translateX(-3rem) skewX(12deg);
+    
+    @include responsive(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
   
   &__image {
@@ -37,6 +53,9 @@
   
   &__text {
     transform: skewX(12deg);
+    @include responsive(phone) {
+      transform: skewX(0);
+    }
   }
   
   &__caption {

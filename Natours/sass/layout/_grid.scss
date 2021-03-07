@@ -5,20 +5,37 @@
   // El :not es opuesto a .row:last-child, niega y selecciona lo contrario
   // En este ejemplo, está seleccionando todos menos el último
   // Otra opción es .row:last-child { margin-bottom: 0}
-  &:not(:last-child) {
-    margin-bottom: $grid-gutter-vertical;
+    &:not(:last-child) {
+      margin-bottom: $grid-gutter-vertical;
+      
+      @include responsive(tab-port) {
+        margin-bottom: $grid-gutter-vertical-sm;
+      }
+    }
+  @include responsive(tab-port) {
+    max-width: 50rem;
+    padding: 0 3rem;
   }
   @include clearfix;
   
   // Propiedades comunes a todas las columnas
   // Seleccionando todas las columnas con un atributo que hace referencia a todos los elementos que empiezan "class^" con "col-".
-  [class^="col-"] {
-    float: left;
-    &:not(:last-child) {
-      margin-right: $grid-gutter-horizontal;
+    [class^="col-"] {
+      float: left;
+      &:not(:last-child) {
+        margin-right: $grid-gutter-horizontal;
+        
+        // responsive: quitar el margen
+        @include responsive(tab-port) {
+          margin-right: 0;
+          margin-bottom: $grid-gutter-vertical-sm;
+        }
+      }
+      
+      @include responsive(tab-port) {
+        width: 100%!important;
+      }
     }
-    
-  }
   
   // Columnas
   .col-1-of-2 {
