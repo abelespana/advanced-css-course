@@ -18,8 +18,6 @@ html {
   Se da el caso de que no necesitamos esta primera media query para teléfonos, porque nuestra segunda media query para tablet comprueba que el max-width sea de 900px, y esto es cierto en teléfonos también, además de en tablet, así que nos la podemos ahorrar :)
   */
   
-
-  
   @include responsive(tab-land) { // width < 1200?
     font-size: 56.25%; // 1rem = 9px, resultado de 9/16 = 56,25
   }
@@ -46,4 +44,9 @@ body {
   @include responsive(tab-port) {
     padding: 0;
   }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
 }

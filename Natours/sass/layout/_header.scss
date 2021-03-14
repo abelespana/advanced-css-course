@@ -28,16 +28,15 @@
     url(../img/hero.jpg);
   }
   
-  // Como repetimos código para dos media queries, podemos combinarlas así
-  /*
-    @media (min-resolution: 192dpi) and (min-width: 37.5em),
-    (min-width: 2000px) {
+  /* Como repetimos código para dos media queries, podemos combinarlas así
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+  (min-width: 2000px) {
       background-image: linear-gradient(
-        to right, 
-        rgba($color-primary-light, 0.8), 
-        rgba($color-primary-dark, 0.8)),
-      url(../img/hero.jpg);
-    }
+      to right, 
+      rgba($color-primary-light, 0.8), 
+      rgba($color-primary-dark, 0.8)),
+    url(../img/hero.jpg);
+  }
   */ 
   
   @include responsive(phone) {
